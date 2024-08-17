@@ -8,9 +8,9 @@ load_dotenv()
 # Adicione seu token de acesso pessoal aqui
 token = os.getenv("GITHUB_TOKEN")
 
-# Função para obter os repositórios mais populares com a palavra-chave "microservices"
-def get_popular_repos(keyword, num_repos):
-    url = f"https://api.github.com/search/repositories?q={keyword}&sort=stars&order=desc&per_page={num_repos}"
+# Função para obter os repositórios mais populares com a query "query"
+def get_popular_repos(query, num_repos):
+    url = f"https://api.github.com/search/repositories?q={query}&sort=stars&order=desc&per_page={num_repos}"
     headers = {"Authorization": f"token {token}"}
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
@@ -98,11 +98,11 @@ def collect_and_print_repo_info(repos):
 
 # Main
 if __name__ == "__main__":
-    keyword = "java"
-    num_repos = 1 # Número de repositórios a serem coletados
+    query = "stars:>0"
+    num_repos = 100 # Número de repositórios a serem coletados
     try:
-        popular_repos = get_popular_repos(keyword, num_repos)
-        collect_and_print_repo_info(popular_repos);
+        popular_repos = get_popular_repos(query, num_repos)
+        collect_and_print_repo_info(popular_repos)
     except Exception as e:
         print(e)
-    exit(0);
+    exit(0)
