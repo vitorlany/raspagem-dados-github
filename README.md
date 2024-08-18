@@ -1,3 +1,8 @@
+# Laboratório 1
+- Letícia de Assis Fraga
+- Vitor Lany
+- Vitor Lion
+
 # Tutorial
 
 1. Copie e cole o `.env.exemple`, remova `.exemple`, edite o arquivo com o seu token gerado aqui [Fine-grained Personal Access Tokens (github.com)](https://github.com/settings/tokens?type=beta)
