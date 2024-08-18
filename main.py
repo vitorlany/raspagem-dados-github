@@ -72,6 +72,13 @@ def get_closed_issues(owner, repo):
             raise Exception(f"Failed to fetch closed issues: {response.status_code}")
     return len(closed_issues)
 
+# Função para calcular a idade do repositório
+def calculate_repo_age(created_at):
+    created_at_date = datetime.strptime(created_at, "%Y-%m-%dT%H:%M:%SZ")
+    current_at_date = datetime.utcnow()
+    age = current_at_date - created_at_date
+    return age.days
+
 # Função para coletar e imprimir informações dos repositórios
 def collect_and_print_repo_info(repos):
     for repo in repos:
