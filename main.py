@@ -1,6 +1,7 @@
 import requests
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 # Carregar variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -72,12 +73,19 @@ def get_closed_issues(owner, repo):
             raise Exception(f"Failed to fetch closed issues: {response.status_code}")
     return len(closed_issues)
 
-# Função para calcular a idade do repositório
-def calculate_repo_age(created_at):
+# Função para calcular idade a partir da data "created_at"
+def calculate_age(created_at):
     created_at_date = datetime.strptime(created_at, "%Y-%m-%dT%H:%M:%SZ")
-    current_at_date = datetime.utcnow()
-    age = current_at_date - created_at_date
-    return age.days
+    current_at_date = datetime.now()
+    age = current_at_date.year - created_at_date.year
+    return age
+
+# Função para calcular dias a partir da data "date"
+def calculate_days(date):
+    created_at_date = datetime.strptime(date, "%Y-%m-%dT%H:%M:%SZ").date()
+    current_at_date = datetime.now().date()
+    delta = current_at_date - created_at_date
+    return delta.days
 
 # Função para coletar e imprimir informações dos repositórios
 def collect_and_print_repo_info(repos):
@@ -92,15 +100,21 @@ def collect_and_print_repo_info(repos):
         language = repo["language"]
         open_issues = repo["open_issues"]
         closed_issues = get_closed_issues(owner, repo_name)
+        closed_issues_percent = 0
+        if open_issues > 0:
+            closed_issues_percent = closed_issues/open_issues
 
         print(f"Repository: {repo_name}")
-        print(f'Create at: {created_at}')
+        print(f'Created at: {created_at}')
+        print(f'Age: {calculate_age(created_at)} years')
         print(f'Pull requests: {pull_requests}')
         print(f'Releases: {releases}')
         print(f'Updated at: {updated_at}')
+        print(f'Days since updated at: {calculate_days(updated_at)}')
         print(f'Language: {language}')
         print(f'Open issues: {open_issues}')
         print(f'Closed issues: {closed_issues}')
+        print('Percentage of closed issues: %.2f' % closed_issues_percent)
         print("-" * 200)
 
 # Main
