@@ -14,11 +14,9 @@ def get_popular_repos(query, num_repos):
     url = f"https://api.github.com/search/repositories?q={query}&sort=stars&order=desc"
     headers = {"Authorization": f"token {token}"}
     num_pages = math.ceil(num_repos / 100)
-    print(num_pages)
     page = 1
     repos = []
     while page <= num_pages:
-        print("aaa")
         response = requests.get(f"{url}&page={page}&per_page=100", headers=headers)
         if response.status_code == 200:
             page_repos = response.json()["items"]
@@ -26,7 +24,6 @@ def get_popular_repos(query, num_repos):
                 break
             repos.extend(page_repos)
             page += 1
-            print("bbbb")
         else:
             raise Exception(f"Failed to fetch repositories: {response.status_code}")
     return repos

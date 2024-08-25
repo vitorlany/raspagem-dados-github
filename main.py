@@ -32,7 +32,6 @@ def collect_and_print_repo_info(repos):
     for repo in repos:
         owner = repo["owner"]["login"]
         repo_name = repo["name"]
-        print("ccc")
 
         created_at = repo["created_at"]
         age = calculate_age(created_at)
