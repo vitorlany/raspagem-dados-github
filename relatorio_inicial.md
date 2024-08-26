@@ -1,4 +1,4 @@
-# Relatório Final sobre Características de Repositórios Populares no GitHub
+# Relatório
 
 ---
 
