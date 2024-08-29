@@ -3,6 +3,7 @@ import csv
 from dotenv import load_dotenv
 import os
 from datetime import datetime
+import requests
 
 # Carregar variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -30,17 +31,17 @@ def collect_and_print_repo_info(repos):
     rows = []
 
     for repo in repos:
+        repo = repo["node"]
         owner = repo["owner"]["login"]
         repo_name = repo["name"]
-
-        created_at = repo["created_at"]
+        created_at = repo["createdAt"]
         age = calculate_age(created_at)
-        pull_requests = get_pull_requests(owner, repo_name) # Procurar otimizar, consome muito
-        releases = get_releases(owner, repo_name)
-        updated_at = repo["updated_at"]
-        language = repo["language"]
-        open_issues = repo["open_issues"]
-        closed_issues = get_closed_issues(owner, repo_name) # Procurar otimizar, consome muito
+        pull_requests = repo["pullRequests"]["totalCount"]
+        releases = repo["releases"]["totalCount"]
+        updated_at = repo["updatedAt"]
+        language = repo["primaryLanguage"]["name"] if repo["primaryLanguage"] else "None"
+        open_issues = repo["issues"]["totalCount"]
+        closed_issues = repo["closedIssues"]["totalCount"]
 
         closed_issues_percent = 0
         if open_issues > 0:
@@ -56,7 +57,7 @@ def collect_and_print_repo_info(repos):
 # Main
 if __name__ == "__main__":
     query = "stars:>0"
-    num_repos = 1000 # Número de repositórios a serem coletados
+    num_repos = 20 # Número de repositórios a serem coletados
     try:
         popular_repos = get_popular_repos(query, num_repos)
         collect_and_print_repo_info(popular_repos)

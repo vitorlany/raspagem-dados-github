@@ -9,23 +9,77 @@ load_dotenv()
 # Adicione seu token de acesso pessoal aqui
 token = os.getenv("GITHUB_TOKEN")
 
+# GraphQL
+GITHUB_API_URL = "https://api.github.com/graphql"
+
+# Execitar queries
+def run_query(query):
+    headers = {"Authorization": f"Bearer {token}"}
+    response = requests.post(GITHUB_API_URL, json={'query': query}, headers=headers)
+    if response.status_code == 200:
+        return response.json()
+    else:
+        raise Exception(f"Failed to fetch repositories: {response.status_code}")
+
 # Função para obter os repositórios mais populares com a query "query"
 def get_popular_repos(query, num_repos):
-    url = f"https://api.github.com/search/repositories?q={query}&sort=stars&order=desc"
-    headers = {"Authorization": f"token {token}"}
-    num_pages = math.ceil(num_repos / 100)
-    page = 1
     repos = []
-    while page <= num_pages:
-        response = requests.get(f"{url}&page={page}&per_page=100", headers=headers)
-        if response.status_code == 200:
-            page_repos = response.json()["items"]
-            if not page_repos:
-                break
-            repos.extend(page_repos)
-            page += 1
-        else:
-            raise Exception(f"Failed to fetch repositories: {response.status_code}")
+    num_pages = math.ceil(num_repos / 100)
+    cursor = None
+
+    for _ in range(num_pages):
+        fetch_count = min(num_repos, 100)
+        pagination = f', after: "{cursor}"' if cursor else ""
+        graphql_query = f"""
+        {{
+          search(query: "{query}", type: REPOSITORY, first: {fetch_count}{pagination}) {{
+            pageInfo {{
+              endCursor
+              hasNextPage
+            }}
+            edges {{
+              node {{
+                ... on Repository {{
+                  name
+                  owner {{
+                    login
+                  }}
+                  createdAt
+                  updatedAt
+                  primaryLanguage {{
+                    name
+                  }}
+                  pullRequests {{
+                    totalCount
+                  }}
+                  releases {{
+                    totalCount
+                  }}
+                  issues(states: OPEN) {{
+                    totalCount
+                  }}
+                  closedIssues: issues(states: CLOSED) {{
+                    totalCount
+                  }}
+                }}
+              }}
+            }}
+          }}
+        }}
+        """
+
+        result = run_query(graphql_query)
+        page_repos = result["data"]["search"]["edges"]
+        if not page_repos:
+            break
+
+        repos.extend(page_repos)
+        cursor = result["data"]["search"]["pageInfo"]["endCursor"]
+        num_repos -= fetch_count
+
+        if not result["data"]["search"]["pageInfo"]["hasNextPage"]:
+            break
+
     return repos
 
 # Função para obter o número de pull requests com paginação
