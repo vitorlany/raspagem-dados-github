@@ -123,15 +123,15 @@ def get_closed_issues(owner, repo):
     url = f"https://api.github.com/repos/{owner}/{repo}/issues?state=closed"
     headers = {"Authorization": f"token {token}"}
     page = 1
-    closed_issues = []
+    closed_issues = 0
     while True:
         response = requests.get(f"{url}&page={page}&per_page=100", headers=headers)
         if response.status_code == 200:
             page_closed_issues = response.json()
             if not page_closed_issues:
                 break
-            closed_issues.extend(page_closed_issues)
+            closed_issues += 1
             page += 1
         else:
             raise Exception(f"Failed to fetch closed issues: {response.status_code}")
-    return len(closed_issues)
+    return closed_issues
