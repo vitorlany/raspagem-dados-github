@@ -87,51 +87,51 @@ def get_pull_requests(owner, repo):
     url = f"https://api.github.com/repos/{owner}/{repo}/pulls?state=all"
     headers = {"Authorization": f"token {token}"}
     page = 1
-    pull_requests = []
+    pull_requests = 0
     while True:
         response = requests.get(f"{url}&page={page}&per_page=100", headers=headers)
         if response.status_code == 200:
             page_pull_requests = response.json()
             if not page_pull_requests:
                 break
-            pull_requests.extend(page_pull_requests)
+            pull_requests += len(page_pull_requests)
             page += 1
         else:
             raise Exception(f"Failed to fetch pull requests: {response.status_code}")
-    return len(pull_requests)
+    return pull_requests
 
 # Função para obter o número de releases com paginação
 def get_releases(owner, repo):
     url = f"https://api.github.com/repos/{owner}/{repo}/releases"
     headers = {"Authorization": f"token {token}"}
     page = 1
-    releases = []
+    releases = 0
     while True:
         response = requests.get(f"{url}?page={page}&per_page=100", headers=headers)
         if response.status_code == 200:
             page_releases = response.json()
             if not page_releases:
                 break
-            releases.extend(page_releases)
+            releases += len(page_releases)
             page += 1
         else:
             raise Exception(f"Failed to fetch releases: {response.status_code}")
-    return len(releases)
+    return releases
 
 # Função para obter o número de issues fechadas com paginação
 def get_closed_issues(owner, repo):
     url = f"https://api.github.com/repos/{owner}/{repo}/issues?state=closed"
     headers = {"Authorization": f"token {token}"}
     page = 1
-    closed_issues = []
+    closed_issues = 0
     while True:
         response = requests.get(f"{url}&page={page}&per_page=100", headers=headers)
         if response.status_code == 200:
             page_closed_issues = response.json()
             if not page_closed_issues:
                 break
-            closed_issues.extend(page_closed_issues)
+            closed_issues += len(page_closed_issues)
             page += 1
         else:
             raise Exception(f"Failed to fetch closed issues: {response.status_code}")
-    return len(closed_issues)
+    return closed_issues
