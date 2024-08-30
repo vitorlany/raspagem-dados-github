@@ -3,7 +3,7 @@ import csv
 from dotenv import load_dotenv
 import os
 from datetime import datetime
-import requests
+import time
 
 # Carregar variáveis de ambiente do arquivo .env
 load_dotenv()
@@ -57,10 +57,13 @@ def collect_and_print_repo_info(repos):
 # Main
 if __name__ == "__main__":
     query = "stars:>0"
-    num_repos = 20 # Número de repositórios a serem coletados
+    num_repos = 100 # Número de repositórios a serem coletados
     try:
+        start = time.time()
         popular_repos = get_popular_repos(query, num_repos)
         collect_and_print_repo_info(popular_repos)
+        end = time.time()
+        print(f"Tempo de execução: {end - start} segundos")
     except Exception as e:
         print(e)
     exit(0)
