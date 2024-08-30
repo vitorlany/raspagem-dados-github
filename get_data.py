@@ -19,20 +19,19 @@ def run_query(query):
     if response.status_code == 200:
         return response.json()
     else:
-        raise Exception(f"Failed to fetch repositories: {response.status_code}")
+        raise Exception(f"Failed to fetch repositories: {response.status_code} {response.json()}")
 
 # Função para obter os repositórios mais populares com a query "query"
 def get_popular_repos(query, num_repos):
     repos = []
-    num_pages = math.ceil(num_repos / 100)
+    num_pages = math.ceil(num_repos / 25)
     cursor = None
 
     for _ in range(num_pages):
-        fetch_count = min(num_repos, 100)
         pagination = f', after: "{cursor}"' if cursor else ""
         graphql_query = f"""
         {{
-          search(query: "{query}", type: REPOSITORY, first: {fetch_count}{pagination}) {{
+          search(query: "{query}", type: REPOSITORY, first: 25{pagination}) {{
             pageInfo {{
               endCursor
               hasNextPage
@@ -75,7 +74,7 @@ def get_popular_repos(query, num_repos):
 
         repos.extend(page_repos)
         cursor = result["data"]["search"]["pageInfo"]["endCursor"]
-        num_repos -= fetch_count
+        num_repos -= 25
 
         if not result["data"]["search"]["pageInfo"]["hasNextPage"]:
             break

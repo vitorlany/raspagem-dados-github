@@ -34,6 +34,7 @@ def collect_and_print_repo_info(repos):
         repo = repo["node"]
         owner = repo["owner"]["login"]
         repo_name = repo["name"]
+        print(repo_name)
         created_at = repo["createdAt"]
         age = calculate_age(created_at)
         pull_requests = repo["pullRequests"]["totalCount"]
@@ -57,7 +58,7 @@ def collect_and_print_repo_info(repos):
 # Main
 if __name__ == "__main__":
     query = "stars:>0"
-    num_repos = 100 # Número de repositórios a serem coletados
+    num_repos = 1000 # Número de repositórios a serem coletados
     try:
         start = time.time()
         popular_repos = get_popular_repos(query, num_repos)
