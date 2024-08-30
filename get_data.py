@@ -12,7 +12,7 @@ token = os.getenv("GITHUB_TOKEN")
 # GraphQL
 GITHUB_API_URL = "https://api.github.com/graphql"
 
-# Execitar queries
+# Executar query do GraphQL
 def run_query(query):
     headers = {"Authorization": f"Bearer {token}"}
     response = requests.post(GITHUB_API_URL, json={'query': query}, headers=headers)
@@ -20,18 +20,12 @@ def run_query(query):
         return response.json()
     else:
         raise Exception(f"Failed to fetch repositories: {response.status_code} {response.json()}")
-
-# Função para obter os repositórios mais populares com a query "query"
-def get_popular_repos(query, num_repos):
-    repos = []
-    num_pages = math.ceil(num_repos / 25)
-    cursor = None
-
-    for _ in range(num_pages):
-        pagination = f', after: "{cursor}"' if cursor else ""
-        graphql_query = f"""
+    
+# Construir query do GraphQL para 'num_repos' repositórios a partir do item 'cursor'
+def get_query(query, num_repos, cursor):
+    return f"""
         {{
-          search(query: "{query}", type: REPOSITORY, first: 25{pagination}) {{
+          search(query: "{query}", type: REPOSITORY, first: {num_repos}, after: "{cursor}") {{
             pageInfo {{
               endCursor
               hasNextPage
@@ -67,6 +61,17 @@ def get_popular_repos(query, num_repos):
         }}
         """
 
+# Função para obter os repositórios mais populares com a query "query"
+def get_popular_repos(query, num_repos):
+    repos = []
+    max_per_page = 25
+    num_pages = math.ceil(num_repos / max_per_page)
+    page = 1
+    cursor = ""
+
+    while page <= num_pages:
+        graphql_query = get_query(query, max_per_page, cursor)
+
         result = run_query(graphql_query)
         page_repos = result["data"]["search"]["edges"]
         if not page_repos:
@@ -74,63 +79,6 @@ def get_popular_repos(query, num_repos):
 
         repos.extend(page_repos)
         cursor = result["data"]["search"]["pageInfo"]["endCursor"]
-        num_repos -= 25
-
-        if not result["data"]["search"]["pageInfo"]["hasNextPage"]:
-            break
+        page += 1
 
     return repos
-
-# Função para obter o número de pull requests com paginação
-def get_pull_requests(owner, repo):
-    url = f"https://api.github.com/repos/{owner}/{repo}/pulls?state=all"
-    headers = {"Authorization": f"token {token}"}
-    page = 1
-    pull_requests = 0
-    while True:
-        response = requests.get(f"{url}&page={page}&per_page=100", headers=headers)
-        if response.status_code == 200:
-            page_pull_requests = response.json()
-            if not page_pull_requests:
-                break
-            pull_requests += len(page_pull_requests)
-            page += 1
-        else:
-            raise Exception(f"Failed to fetch pull requests: {response.status_code}")
-    return pull_requests
-
-# Função para obter o número de releases com paginação
-def get_releases(owner, repo):
-    url = f"https://api.github.com/repos/{owner}/{repo}/releases"
-    headers = {"Authorization": f"token {token}"}
-    page = 1
-    releases = 0
-    while True:
-        response = requests.get(f"{url}?page={page}&per_page=100", headers=headers)
-        if response.status_code == 200:
-            page_releases = response.json()
-            if not page_releases:
-                break
-            releases += len(page_releases)
-            page += 1
-        else:
-            raise Exception(f"Failed to fetch releases: {response.status_code}")
-    return releases
-
-# Função para obter o número de issues fechadas com paginação
-def get_closed_issues(owner, repo):
-    url = f"https://api.github.com/repos/{owner}/{repo}/issues?state=closed"
-    headers = {"Authorization": f"token {token}"}
-    page = 1
-    closed_issues = 0
-    while True:
-        response = requests.get(f"{url}&page={page}&per_page=100", headers=headers)
-        if response.status_code == 200:
-            page_closed_issues = response.json()
-            if not page_closed_issues:
-                break
-            closed_issues += len(page_closed_issues)
-            page += 1
-        else:
-            raise Exception(f"Failed to fetch closed issues: {response.status_code}")
-    return closed_issues
