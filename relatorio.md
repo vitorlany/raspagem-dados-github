@@ -48,6 +48,7 @@ Com base nos resultados obtidos, as seguintes observações podem ser feitas:
     ![Q1](./images/q1.png)
   
 - **Hipótese 2:** Confirmada. Uma mediana de 972 pull requests aceitas indica que sistemas populares atraem uma quantidade significativa de contribuições externas.
+  ![Q2](./images/q2.png)
   
 - **Hipótese 3:** Parcialmente Confirmada. A mediana de 30 releases indica uma frequência de lançamentos razoável, embora isso possa variar dependendo do tipo de projeto.
   - Podemos observar o gráfico a tendência de dias da última atualização e hoje, que em sua grande maioria são 2 dias
