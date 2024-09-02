@@ -45,24 +45,30 @@ Com base nos resultados obtidos, as seguintes observações podem ser feitas:
 
 - **Hipótese 1:** Confirmada. A mediana de 8 anos para a idade dos repositórios sugere que os sistemas populares tendem a ser maduros e estabelecidos.
   - Em sua maioria, os repositórios mais famosos tem entre 8 a 10 anos.
-    ![Q1](./images/q1.png)
+
+![Q1](./images/q1.png)
   
 - **Hipótese 2:** Confirmada. Uma mediana de 972 pull requests aceitas indica que sistemas populares atraem uma quantidade significativa de contribuições externas.
-  ![Q2](./images/q2.png)
+
+![Q2](./images/q2.png)
   
 - **Hipótese 3:** Parcialmente Confirmada. A mediana de 30 releases indica uma frequência de lançamentos razoável, embora isso possa variar dependendo do tipo de projeto.
   - Podemos observar o gráfico a tendência de dias da última atualização e hoje, que em sua grande maioria são 2 dias
-  ![Q3](./images/q3.png)
+  
+![Q3](./images/q3.png)
   
 - **Hipótese 4:** Confirmada. A mediana de 1 dia para o tempo até a última atualização reflete uma alta frequência de manutenção.
  - Podemos observar no gráfico a quantidade de dias que se passaram entre a última atualização e a data de análise dos resultados (01/09/2024), que em sua grande maioria são de 2 dias.
-  ![Q4](./images/q4.png)
+
+![Q4](./images/q4.png)
   
 - **Hipótese 5:** Confirmada. As linguagens mais populares são Python, JavaScript e TypeScript, o que está de acordo com as expectativas.
-  ![Q5](./images/q5.png)
+
+![Q5](./images/q5.png)
   
 - **Hipótese 6:** Confirmada. Com uma mediana de 86.99% de issues fechadas, fica evidente que sistemas populares mantêm um bom controle sobre as issues.
-  ![Q6](./images/q6.png)
+
+![Q6](./images/q6.png)
 
 #### 6. Conclusão
 A análise confirma a maioria das hipóteses iniciais, revelando que os sistemas populares no GitHub são maduros, frequentemente atualizados, bem mantidos, e escritos nas linguagens mais populares. Além disso, a análise comparativa sugere que sistemas em linguagens populares como Python, JavaScript e TypeScript tendem a receber mais contribuições externas, lançar mais releases e ser atualizados com mais frequência do que sistemas em outras linguagens.
