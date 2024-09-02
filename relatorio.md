@@ -44,6 +44,8 @@ A seguir, apresento os resultados medianos para cada uma das questões de pesqui
 Com base nos resultados obtidos, as seguintes observações podem ser feitas:
 
 - **Hipótese 1:** Confirmada. A mediana de 8 anos para a idade dos repositórios sugere que os sistemas populares tendem a ser maduros e estabelecidos.
+  - Em sua maioria, os repositórios mais famosos tem entre 8 a 10 anos.
+    ![Q1](./images/q1.png)
   
 - **Hipótese 2:** Confirmada. Uma mediana de 972 pull requests aceitas indica que sistemas populares atraem uma quantidade significativa de contribuições externas.
   
@@ -54,6 +56,7 @@ Com base nos resultados obtidos, as seguintes observações podem ser feitas:
 - **Hipótese 5:** Confirmada. As linguagens mais populares são Python, JavaScript e TypeScript, o que está de acordo com as expectativas.
   
 - **Hipótese 6:** Confirmada. Com uma mediana de 86.99% de issues fechadas, fica evidente que sistemas populares mantêm um bom controle sobre as issues.
+  ![Q6](./images/q6.png)
 
 #### 6. Conclusão
 A análise confirma a maioria das hipóteses iniciais, revelando que os sistemas populares no GitHub são maduros, frequentemente atualizados, bem mantidos, e escritos nas linguagens mais populares. Além disso, a análise comparativa sugere que sistemas em linguagens populares como Python, JavaScript e TypeScript tendem a receber mais contribuições externas, lançar mais releases e ser atualizados com mais frequência do que sistemas em outras linguagens.
