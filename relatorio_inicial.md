@@ -14,7 +14,6 @@ Este relatório examina características dos 1.000 repositórios mais populares 
 - **Hipótese 4:** Sistemas populares são atualizados frequentemente, com pequenas lacunas entre as atualizações.
 - **Hipótese 5:** Sistemas populares são escritos nas linguagens de programação mais utilizadas, como Python, JavaScript e TypeScript.
 - **Hipótese 6:** Sistemas populares possuem um alto percentual de issues fechadas, indicando um bom nível de manutenção.
-- **Hipótese 7:** Sistemas escritos em linguagens mais populares recebem mais contribuições externas, lançam mais releases e são atualizados com mais frequência em comparação com sistemas escritos em outras linguagens.
 
 ---
 
