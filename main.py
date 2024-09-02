@@ -34,7 +34,6 @@ def collect_and_print_repo_info(repos):
         repo = repo["node"]
         owner = repo["owner"]["login"]
         repo_name = repo["name"]
-        print(repo_name)
         created_at = repo["createdAt"]
         age = calculate_age(created_at)
         pull_requests = repo["pullRequests"]["totalCount"]
@@ -45,8 +44,8 @@ def collect_and_print_repo_info(repos):
         closed_issues = repo["closedIssues"]["totalCount"]
 
         closed_issues_percent = 0
-        if open_issues > 0:
-            closed_issues_percent = closed_issues/open_issues
+        if (open_issues + closed_issues) > 0:
+            closed_issues_percent = (100 * closed_issues)/(open_issues + closed_issues)
 
         rows.append([repo_name, created_at, age, pull_requests, releases, updated_at, language, open_issues, closed_issues, closed_issues_percent])
         
