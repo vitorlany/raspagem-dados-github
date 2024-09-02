@@ -21,7 +21,7 @@ Este relatório examina características dos 1.000 repositórios mais populares 
 
 Para responder às questões de pesquisa, utilizamos a seguinte abordagem:
 
-1. **Coleta de Dados**: Extraímos informações de 1.000 repositórios com o maior número de estrelas no GitHub, incluindo data de criação, número de contribuições externas, frequência de releases e tempo de resolução de issues.
+1. **Coleta de Dados**: Extraímos informações de 1.000 repositórios com o maior número de estrelas no GitHub, no dia 29/08/2024, incluindo data de criação, número de contribuições externas, frequência de releases e tempo de resolução de issues.
 2. **Cálculo das Métricas:** Foram calculadas as medianas para idade dos repositórios, total de pull requests aceitas, total de releases, tempo até a última atualização e percentual de issues fechadas. Para a análise da linguagem de programação, foi realizada uma contagem das linguagens mais utilizadas.
 3. **Comparação de Grupos:** Para a questão 7, os sistemas foram divididos em dois grupos: sistemas escritos nas linguagens mais populares (Python, JavaScript, TypeScript) e sistemas escritos em outras linguagens. A comparação foi feita para as métricas de contribuição externa, releases e atualizações.
 
@@ -50,10 +50,15 @@ Com base nos resultados obtidos, as seguintes observações podem ser feitas:
 - **Hipótese 2:** Confirmada. Uma mediana de 972 pull requests aceitas indica que sistemas populares atraem uma quantidade significativa de contribuições externas.
   
 - **Hipótese 3:** Parcialmente Confirmada. A mediana de 30 releases indica uma frequência de lançamentos razoável, embora isso possa variar dependendo do tipo de projeto.
+  - Podemos observar o gráfico a tendência de dias da última atualização e hoje, que em sua grande maioria são 2 dias
+  ![Q3](./images/q3.png)
   
-- **Hipótese 4:** Confirmada. A mediana de 2 dias para o tempo até a última atualização reflete uma alta frequência de manutenção.
+- **Hipótese 4:** Confirmada. A mediana de 1 dia para o tempo até a última atualização reflete uma alta frequência de manutenção.
+ - Podemos observar no gráfico a quantidade de dias que se passaram entre a última atualização e a data de análise dos resultados (01/09/2024), que em sua grande maioria são de 2 dias.
+  ![Q4](./images/q4.png)
   
 - **Hipótese 5:** Confirmada. As linguagens mais populares são Python, JavaScript e TypeScript, o que está de acordo com as expectativas.
+  ![Q5](./images/q5.png)
   
 - **Hipótese 6:** Confirmada. Com uma mediana de 86.99% de issues fechadas, fica evidente que sistemas populares mantêm um bom controle sobre as issues.
   ![Q6](./images/q6.png)
