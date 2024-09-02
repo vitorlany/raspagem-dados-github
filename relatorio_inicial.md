@@ -1,4 +1,4 @@
-# Relatório
+# Relatório Final
 
 ---
 
@@ -8,10 +8,13 @@ Este relatório examina características dos 1.000 repositórios mais populares 
 
 **Hipóteses informais**:
 
-1. Repositórios mais antigos tendem a ter mais estrelas e uma base de contribuições externa mais estabelecida.
-2. Repositórios mais novos podem apresentar uma alta frequência de releases e um tempo médio de resolução de issues maior.
-3. A frequência de releases pode diminuir à medida que o repositório amadurece.
-4. Repositórios mais antigos podem ter um tempo médio de resolução de issues mais eficiente devido a processos consolidados.
+- **Hipótese 1:** Sistemas populares tendem a ser mais maduros e antigos.
+- **Hipótese 2:** Sistemas populares recebem uma alta quantidade de contribuições externas, refletida em um número elevado de pull requests aceitas.
+- **Hipótese 3:** Sistemas populares têm um ciclo de lançamentos frequente, evidenciado por um grande número de releases.
+- **Hipótese 4:** Sistemas populares são atualizados frequentemente, com pequenas lacunas entre as atualizações.
+- **Hipótese 5:** Sistemas populares são escritos nas linguagens de programação mais utilizadas, como Python, JavaScript e TypeScript.
+- **Hipótese 6:** Sistemas populares possuem um alto percentual de issues fechadas, indicando um bom nível de manutenção.
+- **Hipótese 7:** Sistemas escritos em linguagens mais populares recebem mais contribuições externas, lançam mais releases e são atualizados com mais frequência em comparação com sistemas escritos em outras linguagens.
 
 ---
 
@@ -20,58 +23,38 @@ Este relatório examina características dos 1.000 repositórios mais populares 
 Para responder às questões de pesquisa, utilizamos a seguinte abordagem:
 
 1. **Coleta de Dados**: Extraímos informações de 1.000 repositórios com o maior número de estrelas no GitHub, incluindo data de criação, número de contribuições externas, frequência de releases e tempo de resolução de issues.
-2. **Análise de Dados**:
-   - **RQ1**: Calculamos a idade dos repositórios subtraindo a data de criação da data atual e analisamos a distribuição dessas idades.
-   - **RQ2**: Correlacionamos a idade dos repositórios com o número de contribuições externas recebidas.
-   - **RQ3**: Avaliamos a frequência de releases e sua variação ao longo do tempo em relação à idade dos repositórios.
-   - **RQ4**: Calculamos o tempo médio de resolução de issues e investigamos sua relação com a idade dos repositórios.
+2. **Cálculo das Métricas:** Foram calculadas as medianas para idade dos repositórios, total de pull requests aceitas, total de releases, tempo até a última atualização e percentual de issues fechadas. Para a análise da linguagem de programação, foi realizada uma contagem das linguagens mais utilizadas.
+3. **Comparação de Grupos:** Para a questão 7, os sistemas foram divididos em dois grupos: sistemas escritos nas linguagens mais populares (Python, JavaScript, TypeScript) e sistemas escritos em outras linguagens. A comparação foi feita para as métricas de contribuição externa, releases e atualizações.
 
 ---
 
-## Resultados e Discussão
+#### 3. Resultados
+A seguir, apresento os resultados medianos para cada uma das questões de pesquisa:
 
-**RQ1: Qual é a distribuição da idade dos repositórios mais populares no GitHub?**
+1. **Idade do repositório (anos):** 8 anos
+2. **Total de pull requests aceitas:** 972 pull requests
+3. **Total de releases:** 30 releases
+4. **Tempo até a última atualização (dias):** 2 dias
+5. **Linguagens de programação mais comuns:** 
+   - Python: 164 repositórios
+   - JavaScript: 157 repositórios
+   - TypeScript: 132 repositórios
+6. **Percentual de issues fechadas:** 86.99%
 
-- **Resultados Esperados**:
-  - Repositórios mais antigos provavelmente constituem a maior parte dos repositórios populares, refletindo uma base sólida de popularidade acumulada ao longo do tempo.
-  - Repositórios mais novos também podem estar presentes, indicando áreas de rápido crescimento e inovação.
+#### 4. Discussão das Hipóteses
+Com base nos resultados obtidos, as seguintes observações podem ser feitas:
 
-- **Discussão**:
-  - É esperado que a média da idade dos repositórios seja relativamente alta, mas com uma distribuição que inclui repositórios mais recentes.
-  - A moda e a mediana podem mostrar se há uma concentração em torno de certos períodos de tempo.
+- **Hipótese 1:** Confirmada. A mediana de 8 anos para a idade dos repositórios sugere que os sistemas populares tendem a ser maduros e estabelecidos.
+  
+- **Hipótese 2:** Confirmada. Uma mediana de 972 pull requests aceitas indica que sistemas populares atraem uma quantidade significativa de contribuições externas.
+  
+- **Hipótese 3:** Parcialmente Confirmada. A mediana de 30 releases indica uma frequência de lançamentos razoável, embora isso possa variar dependendo do tipo de projeto.
+  
+- **Hipótese 4:** Confirmada. A mediana de 2 dias para o tempo até a última atualização reflete uma alta frequência de manutenção.
+  
+- **Hipótese 5:** Confirmada. As linguagens mais populares são Python, JavaScript e TypeScript, o que está de acordo com as expectativas.
+  
+- **Hipótese 6:** Confirmada. Com uma mediana de 86.99% de issues fechadas, fica evidente que sistemas populares mantêm um bom controle sobre as issues.
 
-**RQ2: Como a contribuição externa varia com a idade dos repositórios?**
-
-- **Resultados Esperados**:
-  - Repositórios mais antigos podem apresentar um número maior de contribuições externas devido a uma comunidade mais estabelecida.
-  - Repositórios novos podem ter menos contribuições externas inicialmente, mas podem mostrar um crescimento acelerado se se tornarem populares.
-
-- **Discussão**:
-  - Uma correlação positiva entre a idade e o número de contribuições externas seria indicativa de uma comunidade ativa e consolidada.
-  - Repositórios novos podem precisar de mais tempo para atingir níveis similares de contribuição externa.
-
-**RQ3: Qual é a frequência de releases e como ela varia com a idade dos repositórios?**
-
-- **Resultados Esperados**:
-  - Repositórios mais novos podem ter uma alta frequência de releases para rapidamente incorporar novos recursos e corrigir problemas.
-  - Com o tempo, a frequência de releases pode diminuir, refletindo uma fase mais estável do desenvolvimento do projeto.
-
-- **Discussão**:
-  - Um padrão de diminuição na frequência de releases com a idade pode sugerir uma estabilização no ciclo de desenvolvimento.
-  - Repositórios novos podem exibir picos na frequência de releases à medida que buscam atender às demandas iniciais dos usuários.
-
-**RQ4: Como o tempo médio de resolução de issues varia com a idade dos repositórios?**
-
-- **Resultados Esperados**:
-  - Repositórios mais antigos podem ter um tempo médio de resolução de issues menor devido a processos mais eficientes e uma base de usuários mais experiente.
-  - Repositórios novos podem mostrar um tempo médio de resolução de issues mais alto, refletindo uma curva de aprendizado e processos menos estabelecidos.
-
-- **Discussão**:
-  - Espera-se que o tempo médio de resolução de issues diminua com a idade, sugerindo uma melhoria na eficiência à medida que o repositório amadurece.
-  - Repositórios novos podem precisar otimizar seu processo de resolução de issues para se igualar aos mais antigos.
-
----
-
-## Conclusão
-
-Este relatório forneceu uma visão geral das características dos repositórios mais populares no GitHub, com base em análises da idade, contribuição externa, frequência de releases e tempo de resolução de issues. As hipóteses e análises sugerem padrões típicos de maturidade e desenvolvimento de projetos no GitHub. Essas informações podem ajudar a entender o comportamento e as necessidades dos repositórios populares e orientar práticas futuras de desenvolvimento e manutenção de projetos.
+#### 6. Conclusão
+A análise confirma a maioria das hipóteses iniciais, revelando que os sistemas populares no GitHub são maduros, frequentemente atualizados, bem mantidos, e escritos nas linguagens mais populares. Além disso, a análise comparativa sugere que sistemas em linguagens populares como Python, JavaScript e TypeScript tendem a receber mais contribuições externas, lançar mais releases e ser atualizados com mais frequência do que sistemas em outras linguagens.
