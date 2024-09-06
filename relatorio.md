@@ -56,7 +56,7 @@ Com base nos resultados obtidos, as seguintes observações podem ser feitas:
   
 ![Q3](./images/q3.png)
   
-- **Hipótese 4:** Confirmada. A mediana de 1 dia para o tempo até a última atualização reflete uma alta frequência de manutenção.
+- **Hipótese 4:** Parcialmente Confirmada. A mediana de 2 dias para o tempo até a última atualização reflete uma alta frequência de manutenção.
  - Podemos observar no gráfico a quantidade de dias que se passaram entre a última atualização e a data de análise dos resultados (01/09/2024), que em sua grande maioria são de 2 dias.
 
 ![Q4](./images/q4.png)
