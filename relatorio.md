@@ -23,7 +23,6 @@ Para responder às questões de pesquisa, utilizamos a seguinte abordagem:
 
 1. **Coleta de Dados**: Extraímos informações de 1.000 repositórios com o maior número de estrelas no GitHub, no dia 29/08/2024, incluindo data de criação, número de contribuições externas, frequência de releases e tempo de resolução de issues.
 2. **Cálculo das Métricas:** Foram calculadas as medianas para idade dos repositórios, total de pull requests aceitas, total de releases, tempo até a última atualização e percentual de issues fechadas. Para a análise da linguagem de programação, foi realizada uma contagem das linguagens mais utilizadas.
-3. **Comparação de Grupos:** Para a questão 7, os sistemas foram divididos em dois grupos: sistemas escritos nas linguagens mais populares (Python, JavaScript, TypeScript) e sistemas escritos em outras linguagens. A comparação foi feita para as métricas de contribuição externa, releases e atualizações.
 
 ---
 
